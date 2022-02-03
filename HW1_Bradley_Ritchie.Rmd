@@ -1,0 +1,34 @@
+---
+title: "STAA 566 HW1"
+author: "Ritchie Bradley"
+date: "2/2/2022"
+output: html_document
+knit: (function(input_file, encoding) {
+  out_dir <- 'docs';
+  rmarkdown::render(input_file,
+ encoding=encoding,
+ output_file=file.path(dirname(input_file), out_dir, 'index.html'))})
+---
+
+I like fish and especially love Bluegill/Sunfish, so I decided to do my plot using a fisheries package I googled.
+
+```{r}
+#install.packages("FSA")
+#install.packages("FSAdata")
+library(FSAdata)
+b <- BluegillLM
+head(b)
+```
+
+
+```{r}
+library(ggplot2)
+library(ggrepel)
+library(ggthemes)
+
+p_bl <- ggplot(data = b, mapping = aes(x = tl, y = wght))
+
+p_bl <- p_bl + geom_point()+theme_tufte(base_size = 12, base_family = "sans")+ ylab("Weight (in grams)") +xlab("Total Length (mm)")+ggtitle("Bluegill Weight and Size from Lake Mary, MN ")
+p_bl
+```
+
